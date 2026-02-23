@@ -7,7 +7,7 @@ import TopNavBar from "@/components/ui/TopNavBar";
 import PriceChart from "@/components/charts/PriceChart";
 import ProbabilityChart from "@/components/charts/ProbabilityChart";
 import RollingAUCChart from "@/components/charts/RollingAUCChart";
-import { useDashboardData, useMarketWebSocket } from "@/lib/hooks";
+import { useDashboardData } from "@/lib/hooks";
 import { DashboardQuery, ModelType, SymbolCode, Timeframe } from "@/types/dashboard";
 
 const EquityCurve = lazy(() => import("@/components/charts/EquityCurve"));
@@ -28,7 +28,6 @@ export default function DashboardPage() {
   );
 
   const { data, loading, error, refresh } = useDashboardData(query);
-  const { connected } = useMarketWebSocket(symbol, timeframe);
 
   return (
     <main className="mx-auto min-h-screen w-full max-w-[1600px] p-4 md:p-6">
@@ -46,13 +45,19 @@ export default function DashboardPage() {
 
       <div className="mb-4 flex items-center justify-between text-xs text-muted">
         <span>Mode: Quant Research Terminal</span>
-        <span className={connected ? "text-bull" : "text-muted"}>WebSocket: {connected ? "Connected" : "Idle"}</span>
       </div>
 
       <SectionTitle title="Market View" />
       <div className="mb-6">
         <Card title="Price, Signals, Volume">
-          <PriceChart data={data?.priceSeries ?? []} loading={loading} error={error} showMA={showMA} />
+          <PriceChart
+            symbol={symbol}
+            timeframe={timeframe}
+            data={data?.priceSeries ?? []}
+            loading={loading}
+            error={error}
+            showMA={showMA}
+          />
         </Card>
       </div>
 

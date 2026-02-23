@@ -2,7 +2,7 @@
 
 import json
 
-from fastapi import Depends, FastAPI, Query
+from fastapi import Depends, FastAPI, Query, WebSocket, WebSocketDisconnect
 from fastapi.middleware.cors import CORSMiddleware
 from sqlalchemy.orm import Session
 
@@ -27,6 +27,7 @@ from app.services.ohlc_service import (
     get_ohlc_dataframe,
     resample_ohlc_dataframe,
 )
+from app.services.market_ws_service import TIMEFRAME_SECONDS, get_market_hub
 from app.services.redis_client import get_value, set_value
 from app.strategies.backtester import run_moving_average_backtest
 
@@ -49,6 +50,29 @@ def on_startup() -> None:
 @app.get("/health")
 def health_check() -> dict:
     return {"status": "ok"}
+
+
+@app.websocket("/ws/market")
+async def market_ws(
+    websocket: WebSocket,
+    symbol: str = "BTCUSDT",
+    timeframe: str = "5m",
+) -> None:
+    timeframe = timeframe.lower()
+    if timeframe not in TIMEFRAME_SECONDS:
+        await websocket.close(code=1008, reason="Unsupported timeframe")
+        return
+
+    hub = get_market_hub(symbol=symbol, timeframe=timeframe)
+    await hub.connect(websocket)
+
+    try:
+        while True:
+            await websocket.receive_text()
+    except WebSocketDisconnect:
+        pass
+    finally:
+        await hub.disconnect(websocket)
 
 
 @app.post("/ohlc")

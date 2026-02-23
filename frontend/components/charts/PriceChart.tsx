@@ -4,87 +4,68 @@ import {
   Bar,
   BarChart,
   CartesianGrid,
-  ComposedChart,
+  Line,
+  LineChart,
   ResponsiveContainer,
-  Scatter,
   Tooltip,
   XAxis,
   YAxis,
 } from "recharts";
+import { useMemo } from "react";
 import { PriceWithSignalPoint } from "@/types/dashboard";
 import ChartWrapper from "@/components/ui/ChartWrapper";
+import { useMarketWebSocket } from "@/lib/hooks";
 
 interface PriceChartProps {
+  symbol: string;
+  timeframe: string;
   data: PriceWithSignalPoint[];
   loading: boolean;
   error: string | null;
   showMA: boolean;
 }
 
-function candlePath(
-  x: number,
-  open: number,
-  close: number,
-  high: number,
-  low: number,
-  candleWidth = 6,
-): string {
-  const bodyTop = Math.min(open, close);
-  const bodyBottom = Math.max(open, close);
-  return `M${x},${high} L${x},${bodyTop} M${x - candleWidth / 2},${bodyTop} L${x + candleWidth / 2},${bodyTop} L${x + candleWidth / 2},${bodyBottom} L${x - candleWidth / 2},${bodyBottom} Z M${x},${bodyBottom} L${x},${low}`;
-}
-
-function CandleShape(props: any) {
-  const { cx, payload, yAxis } = props;
-
-  if (typeof cx !== "number" || !payload || !yAxis?.scale) {
-    return null;
-  }
-
-  const yScale = yAxis.scale;
-  const openY = yScale(payload.open);
-  const closeY = yScale(payload.close);
-  const highY = yScale(payload.high);
-  const lowY = yScale(payload.low);
-  const up = payload.close >= payload.open;
-
-  return (
-    <path
-      d={candlePath(cx, openY, closeY, highY, lowY)}
-      fill={up ? "#22c55e" : "#ef4444"}
-      stroke={up ? "#22c55e" : "#ef4444"}
-      strokeWidth={1}
-    />
+export default function PriceChart({ symbol, timeframe, data, loading, error, showMA }: PriceChartProps) {
+  const { connected, candles } = useMarketWebSocket(symbol, timeframe, data);
+  const chartData = useMemo(
+    () =>
+      candles.map((d) => ({
+        ...d,
+        timestamp: String(d.timestamp),
+        open: Number(d.open),
+        high: Number(d.high),
+        low: Number(d.low),
+        close: Number(d.close),
+        volume: Number(d.volume),
+      })),
+    [candles],
   );
-}
-
-export default function PriceChart({ data, loading, error, showMA }: PriceChartProps) {
-  const longSignals = data.filter((d) => d.signal === "long");
-  const shortSignals = data.filter((d) => d.signal === "short");
 
   return (
     <div className="space-y-3">
+      <div className="flex items-center justify-end text-xs">
+        <span className={connected ? "text-bull" : "text-bear"}>{connected ? "Live" : "Disconnected"}</span>
+      </div>
+
       <ChartWrapper loading={loading} error={error} height={330}>
         <ResponsiveContainer width="100%" height="100%">
-          <ComposedChart data={data} margin={{ top: 12, right: 18, bottom: 0, left: 6 }}>
+          <LineChart data={chartData} margin={{ top: 12, right: 18, bottom: 0, left: 6 }}>
             <CartesianGrid stroke="#1f2937" strokeDasharray="0" />
-            <XAxis dataKey="timestamp" hide />
-            <YAxis yAxisId="price" domain={["dataMin", "dataMax"]} tick={{ fill: "#9ca3af", fontSize: 11 }} />
+            <XAxis dataKey="timestamp" type="category" hide />
+            <YAxis domain={["dataMin", "dataMax"]} tick={{ fill: "#9ca3af", fontSize: 11 }} />
             <Tooltip
               contentStyle={{ background: "#111827", border: "1px solid #1f2937" }}
               labelStyle={{ color: "#e5e7eb" }}
             />
-            <Scatter yAxisId="price" data={data} dataKey="close" shape={<CandleShape />} />
-            <Scatter yAxisId="price" data={longSignals} fill="#22c55e" shape="circle" />
-            <Scatter yAxisId="price" data={shortSignals} fill="#ef4444" shape="circle" />
+            <Line type="monotone" dataKey="close" stroke="#60a5fa" dot={false} isAnimationActive={false} />
             {showMA ? null : null}
-          </ComposedChart>
+          </LineChart>
         </ResponsiveContainer>
       </ChartWrapper>
 
       <ChartWrapper loading={loading} error={error} height={160}>
         <ResponsiveContainer width="100%" height="100%">
-          <BarChart data={data}>
+          <BarChart data={chartData}>
             <CartesianGrid stroke="#1f2937" />
             <XAxis dataKey="timestamp" tick={{ fill: "#9ca3af", fontSize: 11 }} minTickGap={26} />
             <YAxis tick={{ fill: "#9ca3af", fontSize: 11 }} />
