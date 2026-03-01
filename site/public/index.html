@@ -1,0 +1,367 @@
+<html class="dark"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;400;500;600;700&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    colors: {
+                        "primary": "#9D4EDD",
+                        "accent": "#00F5D4",
+                        "steel": "#94A3B8",
+                        "void": "#06080F",
+                        "surface": "#11141D",
+                    },
+                    fontFamily: {
+                        "display": ["Space Grotesk", "sans-serif"]
+                    },
+                    borderRadius: { "DEFAULT": "0.25rem", "lg": "0.5rem", "xl": "0.75rem", "2xl": "1rem", "3xl": "1.5rem", "full": "9999px" },
+                },
+            },
+        }
+    </script>
+<style type="text/tailwindcss">
+        @layer components {
+            .glass {
+                background: rgba(255, 255, 255, 0.03);
+                backdrop-filter: blur(16px);
+                -webkit-backdrop-filter: blur(16px);
+                border: 1px solid rgba(255, 255, 255, 0.08);
+            }
+            .glass-dark {
+                background: rgba(6, 8, 15, 0.6);
+                backdrop-filter: blur(20px);
+                -webkit-backdrop-filter: blur(20px);
+                border: 1px solid rgba(255, 255, 255, 0.05);
+            }
+            .hero-gradient {
+                background: linear-gradient(to bottom right, #FFFFFF 30%, #94A3B8 100%);
+                -webkit-background-clip: text;
+                -webkit-text-fill-color: transparent;
+            }
+            .orb {
+                position: absolute;
+                border-radius: 100%;
+                filter: blur(120px);
+                z-index: 0;
+            }
+            .ui-panel {
+                @apply glass-dark rounded-xl border border-white/5 shadow-[0_8px_32px_rgba(0,0,0,0.4)];
+            }
+        }
+    </style>
+</head>
+<body class="bg-void font-display text-slate-100 selection:bg-primary/30 overflow-x-hidden">
+<div class="fixed inset-0 overflow-hidden pointer-events-none">
+<div class="orb bg-primary/5 w-[800px] h-[800px] -top-96 -left-48"></div>
+<div class="orb bg-accent/5 w-[600px] h-[600px] top-1/3 -right-48"></div>
+</div>
+<header class="sticky top-0 z-50 w-full px-6 py-6">
+<nav class="max-w-7xl mx-auto glass rounded-full px-8 py-3 flex items-center justify-between">
+<div class="flex items-center gap-2">
+<div class="size-8 bg-primary rounded flex items-center justify-center text-white">
+<span class="material-symbols-outlined text-xl">bolt</span>
+</div>
+<span class="text-xl font-bold tracking-tight">NEURAL<span class="text-primary text-opacity-80">X</span></span>
+</div>
+<div class="hidden md:flex items-center gap-10">
+<a class="text-xs font-medium uppercase tracking-widest text-steel hover:text-white transition-colors" href="#">Features</a>
+<a class="text-xs font-medium uppercase tracking-widest text-steel hover:text-white transition-colors" href="#">Analytics</a>
+<a class="text-xs font-medium uppercase tracking-widest text-steel hover:text-white transition-colors" href="#">Pricing</a>
+</div>
+<div class="flex items-center gap-6">
+<a class="text-sm font-medium text-steel hover:text-white transition-colors" href="#">Log In</a>
+<button class="bg-primary hover:bg-primary/90 text-white px-6 py-2 rounded-full text-sm font-semibold transition-all shadow-xl shadow-primary/10">
+                    Start Trading
+                </button>
+</div>
+</nav>
+</header>
+<main class="relative z-10">
+<section class="pt-16 pb-32 px-6">
+<div class="max-w-5xl mx-auto text-center mb-20">
+<div class="inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-white/5 border border-white/10 text-steel text-[10px] font-bold mb-8 uppercase tracking-[0.2em]">
+<span class="flex h-1.5 w-1.5 rounded-full bg-accent shadow-[0_0_8px_rgba(0,245,212,0.6)]"></span>
+                    System Operational • v4.2 Elite
+                </div>
+<h1 class="text-6xl md:text-8xl font-medium tracking-tighter mb-8 leading-[0.95] hero-gradient">
+                    Precision intelligence <br/> for the modern trader.
+                </h1>
+<p class="text-steel text-lg md:text-xl max-w-2xl mx-auto mb-10 font-light leading-relaxed">
+                    Experience a sophisticated interface powered by deep-learning models. Minimal friction, institutional-grade execution.
+                </p>
+<div class="flex flex-col sm:flex-row items-center justify-center gap-6">
+<button class="w-full sm:w-auto bg-white text-void px-10 py-4 rounded-full font-bold text-base hover:bg-opacity-90 transition-all active:scale-95 shadow-2xl">
+                        Open Account
+                    </button>
+<button class="w-full sm:w-auto glass text-white px-10 py-4 rounded-full font-bold text-base hover:bg-white/10 transition-all border-white/10">
+                        Platform Tour
+                    </button>
+</div>
+</div>
+<div class="relative max-w-6xl mx-auto mt-12 group">
+<div class="absolute -inset-10 bg-gradient-to-b from-primary/10 to-transparent rounded-[3rem] blur-3xl opacity-30"></div>
+<div class="relative glass rounded-3xl p-4 md:p-6 shadow-2xl border border-white/10">
+<div class="grid grid-cols-12 gap-4 aspect-[16/9]">
+<div class="col-span-1 hidden md:flex flex-col items-center py-6 gap-8 ui-panel bg-white/5">
+<span class="material-symbols-outlined text-steel opacity-40">dashboard</span>
+<span class="material-symbols-outlined text-accent">monitoring</span>
+<span class="material-symbols-outlined text-steel opacity-40">account_balance_wallet</span>
+<span class="material-symbols-outlined text-steel opacity-40">settings</span>
+</div>
+<div class="col-span-12 md:col-span-8 flex flex-col gap-4">
+<div class="flex-1 ui-panel p-6 flex flex-col relative overflow-hidden">
+<div class="flex justify-between items-center mb-8">
+<div class="flex items-center gap-4">
+<div class="h-8 w-24 bg-white/5 rounded-md border border-white/10"></div>
+<div class="h-8 w-8 bg-accent/10 rounded-md flex items-center justify-center">
+<span class="material-symbols-outlined text-accent text-sm">add</span>
+</div>
+</div>
+<div class="flex gap-2">
+<div class="w-12 h-6 bg-white/5 rounded-full border border-white/5"></div>
+<div class="w-12 h-6 bg-white/5 rounded-full border border-white/5"></div>
+</div>
+</div>
+<div class="flex-1 flex items-end gap-1 px-2 pb-4">
+<div class="flex-1 bg-gradient-to-t from-accent/20 to-transparent rounded-t-sm h-1/3"></div>
+<div class="flex-1 bg-gradient-to-t from-accent/20 to-transparent rounded-t-sm h-1/2"></div>
+<div class="flex-1 bg-gradient-to-t from-accent/20 to-transparent rounded-t-sm h-2/5"></div>
+<div class="flex-1 bg-accent/40 rounded-t-sm h-3/5"></div>
+<div class="flex-1 bg-accent/40 rounded-t-sm h-4/5"></div>
+<div class="flex-1 bg-accent/40 rounded-t-sm h-3/4"></div>
+<div class="flex-1 bg-accent/40 rounded-t-sm h-full shadow-[0_0_20px_rgba(0,245,212,0.2)]"></div>
+</div>
+</div>
+<div class="h-32 grid grid-cols-3 gap-4">
+<div class="ui-panel bg-white/5"></div>
+<div class="ui-panel bg-white/5"></div>
+<div class="ui-panel bg-white/5"></div>
+</div>
+</div>
+<div class="col-span-12 md:col-span-3 flex flex-col gap-4">
+<div class="flex-1 ui-panel p-6 space-y-6">
+<div class="space-y-2">
+<div class="h-2 w-12 bg-steel/30 rounded"></div>
+<div class="h-4 w-full bg-white/10 rounded"></div>
+</div>
+<div class="space-y-4 pt-4 border-t border-white/5">
+<div class="flex justify-between">
+<div class="h-3 w-16 bg-steel/20 rounded"></div>
+<div class="h-3 w-10 bg-accent/30 rounded"></div>
+</div>
+<div class="flex justify-between">
+<div class="h-3 w-20 bg-steel/20 rounded"></div>
+<div class="h-3 w-8 bg-steel/20 rounded"></div>
+</div>
+<div class="flex justify-between">
+<div class="h-3 w-14 bg-steel/20 rounded"></div>
+<div class="h-3 w-12 bg-steel/20 rounded"></div>
+</div>
+</div>
+<div class="mt-auto pt-8">
+<div class="h-10 w-full bg-primary rounded-lg opacity-80"></div>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+</section>
+<section class="py-24 px-6 max-w-7xl mx-auto">
+<div class="mb-16">
+<h2 class="text-3xl md:text-5xl font-bold mb-4 tracking-tight">AI Strategy Engine</h2>
+<p class="text-steel max-w-xl font-light">Advanced neural tools designed for hyper-accurate market analysis and execution.</p>
+</div>
+<div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+<div class="glass p-10 rounded-3xl group hover:border-white/20 transition-all">
+<div class="size-12 rounded-2xl bg-white/5 flex items-center justify-center text-steel mb-8 group-hover:text-primary transition-colors">
+<span class="material-symbols-outlined text-3xl">psychology</span>
+</div>
+<h3 class="text-xl font-bold mb-4">Neural Network Predictions</h3>
+<p class="text-steel text-sm leading-relaxed font-light">Deep learning models trained on 15 years of market data to predict price action with 89% historical accuracy.</p>
+</div>
+<div class="glass p-10 rounded-3xl group hover:border-white/20 transition-all">
+<div class="size-12 rounded-2xl bg-white/5 flex items-center justify-center text-steel mb-8 group-hover:text-accent transition-colors">
+<span class="material-symbols-outlined text-3xl">analytics</span>
+</div>
+<h3 class="text-xl font-bold mb-4">Real-Time Sentiment Analysis</h3>
+<p class="text-steel text-sm leading-relaxed font-light">Aggregates news, social feeds, and institutional flows in real-time to detect underlying market shifts.</p>
+</div>
+<div class="glass p-10 rounded-3xl group hover:border-white/20 transition-all">
+<div class="size-12 rounded-2xl bg-white/5 flex items-center justify-center text-steel mb-8 group-hover:text-primary transition-colors">
+<span class="material-symbols-outlined text-3xl">bolt</span>
+</div>
+<h3 class="text-xl font-bold mb-4">Sub-millisecond Execution</h3>
+<p class="text-steel text-sm leading-relaxed font-light">Global fiber-optic networks ensuring your orders are filled at the best price with near-zero latency.</p>
+</div>
+</div>
+</section>
+<section class="py-24 px-6 max-w-7xl mx-auto">
+<div class="grid grid-cols-1 lg:grid-cols-2 gap-24 items-center">
+<div>
+<span class="text-accent font-bold tracking-[0.2em] text-[10px] uppercase mb-4 block">Proven Performance</span>
+<h2 class="text-4xl md:text-6xl font-bold mb-8 tracking-tight leading-tight">Master the Analytics of Tomorrow</h2>
+<p class="text-steel text-lg mb-10 leading-relaxed font-light">
+                        Backtest your strategies against decades of tick-level data. Our AI visualizes potential drawdowns and risk-adjusted returns before deployment.
+                    </p>
+<ul class="space-y-6">
+<li class="flex items-center gap-4">
+<span class="material-symbols-outlined text-accent text-xl">check_circle</span>
+<span class="font-medium">Monte Carlo Risk Simulations</span>
+</li>
+<li class="flex items-center gap-4">
+<span class="material-symbols-outlined text-accent text-xl">check_circle</span>
+<span class="font-medium">Automated Alpha Detection</span>
+</li>
+</ul>
+</div>
+<div class="ui-panel p-10 rounded-[2.5rem] bg-white/[0.02]">
+<div class="flex items-center justify-between mb-12">
+<div>
+<p class="text-steel text-sm font-medium uppercase tracking-wider mb-2">Portfolio Growth</p>
+<h4 class="text-4xl font-bold text-white tracking-tighter">+142.8%</h4>
+</div>
+<div class="bg-accent/10 px-4 py-1.5 rounded-full text-accent text-[10px] font-bold tracking-widest border border-accent/20">VS MARKET (12.4%)</div>
+</div>
+<div class="h-64 flex items-end gap-3">
+<div class="bg-white/5 w-full rounded-t-xl" style="height: 30%"></div>
+<div class="bg-white/5 w-full rounded-t-xl" style="height: 45%"></div>
+<div class="bg-white/5 w-full rounded-t-xl" style="height: 35%"></div>
+<div class="bg-accent/40 w-full rounded-t-xl" style="height: 60%"></div>
+<div class="bg-accent/60 w-full rounded-t-xl" style="height: 75%"></div>
+<div class="bg-accent/80 w-full rounded-t-xl" style="height: 90%"></div>
+<div class="bg-accent w-full rounded-t-xl shadow-[0_0_30px_rgba(0,245,212,0.3)]" style="height: 100%"></div>
+</div>
+</div>
+</div>
+</section>
+<section class="py-24 px-6 max-w-7xl mx-auto">
+<div class="glass rounded-[3rem] p-12 lg:p-24 overflow-hidden relative border-white/5">
+<div class="absolute -top-20 -right-20 opacity-5">
+<span class="material-symbols-outlined text-[400px]">account_tree</span>
+</div>
+<div class="relative z-10 grid grid-cols-1 lg:grid-cols-2 gap-16 items-center">
+<div>
+<h2 class="text-4xl md:text-5xl font-bold mb-8 tracking-tight">No-Code <br/> Automation</h2>
+<p class="text-steel text-lg mb-10 font-light leading-relaxed">Build complex trading logic without writing a single line of code. Connect indicators, market events, and execution steps in our visual flow editor.</p>
+<button class="bg-white text-void px-8 py-3.5 rounded-full font-bold text-sm hover:bg-slate-200 transition-colors">Launch Visual Editor</button>
+</div>
+<div class="flex flex-col gap-6 relative">
+<div class="glass p-5 rounded-2xl self-start border-l-4 border-l-accent flex items-center gap-5 w-full max-w-xs shadow-xl">
+<span class="material-symbols-outlined text-accent bg-accent/10 p-2 rounded-lg">input</span>
+<div>
+<p class="text-[10px] text-steel font-bold uppercase tracking-widest mb-1">Trigger</p>
+<p class="font-medium text-sm">If RSI &lt; 30 (Hourly)</p>
+</div>
+</div>
+<div class="w-px h-10 bg-gradient-to-b from-accent to-primary ml-12"></div>
+<div class="glass p-5 rounded-2xl self-end border-l-4 border-l-primary flex items-center gap-5 w-full max-w-xs shadow-xl">
+<span class="material-symbols-outlined text-primary bg-primary/10 p-2 rounded-lg">shopping_cart</span>
+<div>
+<p class="text-[10px] text-steel font-bold uppercase tracking-widest mb-1">Action</p>
+<p class="font-medium text-sm">Buy $ETH (Limit Order)</p>
+</div>
+</div>
+<div class="w-px h-10 bg-gradient-to-b from-primary to-transparent ml-auto mr-12"></div>
+</div>
+</div>
+</div>
+</section>
+<section class="py-24 px-6 max-w-7xl mx-auto text-center">
+<h2 class="text-4xl md:text-5xl font-bold mb-20 tracking-tight">Select Your Interface</h2>
+<div class="grid grid-cols-1 md:grid-cols-3 gap-8 items-center">
+<div class="glass p-12 rounded-[2.5rem] border-white/5 hover:border-white/10 transition-all">
+<p class="text-[10px] font-black text-steel uppercase tracking-[0.2em] mb-6">Explorer</p>
+<div class="text-5xl font-bold mb-8 tracking-tighter">$0<span class="text-xl text-steel font-light">/mo</span></div>
+<ul class="text-left space-y-5 mb-12 text-sm text-steel font-light">
+<li class="flex items-center gap-3"><span class="material-symbols-outlined text-sm text-accent">check</span> Real-time data</li>
+<li class="flex items-center gap-3"><span class="material-symbols-outlined text-sm text-accent">check</span> 3 AI Strategies</li>
+<li class="flex items-center gap-3 opacity-30"><span class="material-symbols-outlined text-sm">close</span> Advanced backtesting</li>
+</ul>
+<button class="w-full py-4 rounded-2xl border border-white/10 hover:bg-white/5 transition-colors font-bold text-xs uppercase tracking-widest">Start Free</button>
+</div>
+<div class="glass p-12 rounded-[2.5rem] bg-white/[0.04] border-primary/40 ring-1 ring-primary/40 relative scale-110 shadow-2xl z-20">
+<div class="absolute -top-4 left-1/2 -translate-x-1/2 bg-primary text-white text-[9px] font-black px-4 py-1.5 rounded-full uppercase tracking-[0.2em] shadow-xl">Most Popular</div>
+<p class="text-[10px] font-black text-primary uppercase tracking-[0.2em] mb-6">Pro Trader</p>
+<div class="text-5xl font-bold mb-8 tracking-tighter">$49<span class="text-xl text-steel font-light">/mo</span></div>
+<ul class="text-left space-y-5 mb-12 text-sm text-slate-200 font-light">
+<li class="flex items-center gap-3"><span class="material-symbols-outlined text-sm text-primary">check</span> Unlimited strategies</li>
+<li class="flex items-center gap-3"><span class="material-symbols-outlined text-sm text-primary">check</span> Deep Sentiment analysis</li>
+<li class="flex items-center gap-3"><span class="material-symbols-outlined text-sm text-primary">check</span> Custom AI Nodes</li>
+</ul>
+<button class="w-full py-4 rounded-2xl bg-primary hover:bg-opacity-90 transition-all font-bold text-xs uppercase tracking-widest text-white shadow-xl shadow-primary/20">Upgrade Now</button>
+</div>
+<div class="glass p-12 rounded-[2.5rem] border-white/5 hover:border-white/10 transition-all">
+<p class="text-[10px] font-black text-steel uppercase tracking-[0.2em] mb-6">Institution</p>
+<div class="text-5xl font-bold mb-8 tracking-tighter">$299<span class="text-xl text-steel font-light">/mo</span></div>
+<ul class="text-left space-y-5 mb-12 text-sm text-steel font-light">
+<li class="flex items-center gap-3"><span class="material-symbols-outlined text-sm text-accent">check</span> API Access</li>
+<li class="flex items-center gap-3"><span class="material-symbols-outlined text-sm text-accent">check</span> Co-location servers</li>
+<li class="flex items-center gap-3"><span class="material-symbols-outlined text-sm text-accent">check</span> Dedicated Support</li>
+</ul>
+<button class="w-full py-4 rounded-2xl border border-white/10 hover:bg-white/5 transition-colors font-bold text-xs uppercase tracking-widest">Contact Sales</button>
+</div>
+</div>
+</section>
+</main>
+<footer class="bg-void py-24 px-6 border-t border-white/5">
+<div class="max-w-7xl mx-auto grid grid-cols-2 md:grid-cols-4 lg:grid-cols-6 gap-16">
+<div class="col-span-2">
+<div class="flex items-center gap-2 mb-8">
+<div class="size-6 bg-primary rounded flex items-center justify-center text-white">
+<span class="material-symbols-outlined text-base">bolt</span>
+</div>
+<span class="text-lg font-bold tracking-tight">NEURALX</span>
+</div>
+<p class="text-steel text-sm max-w-xs mb-10 font-light leading-relaxed">Empowering the next generation of traders with institutional-grade AI intelligence and sub-millisecond execution.</p>
+<div class="flex gap-6">
+<a class="text-steel hover:text-white" href="#"><span class="material-symbols-outlined">public</span></a>
+<a class="text-steel hover:text-white" href="#"><span class="material-symbols-outlined">terminal</span></a>
+<a class="text-steel hover:text-white" href="#"><span class="material-symbols-outlined">share</span></a>
+</div>
+</div>
+<div>
+<h5 class="font-bold text-xs uppercase tracking-widest mb-8">Platform</h5>
+<ul class="space-y-4 text-sm text-steel font-light">
+<li><a class="hover:text-white transition-colors" href="#">Features</a></li>
+<li><a class="hover:text-white transition-colors" href="#">Analytics</a></li>
+<li><a class="hover:text-white transition-colors" href="#">API</a></li>
+</ul>
+</div>
+<div>
+<h5 class="font-bold text-xs uppercase tracking-widest mb-8">Resources</h5>
+<ul class="space-y-4 text-sm text-steel font-light">
+<li><a class="hover:text-white transition-colors" href="#">Documentation</a></li>
+<li><a class="hover:text-white transition-colors" href="#">Case Studies</a></li>
+<li><a class="hover:text-white transition-colors" href="#">Blog</a></li>
+</ul>
+</div>
+<div>
+<h5 class="font-bold text-xs uppercase tracking-widest mb-8">Legal</h5>
+<ul class="space-y-4 text-sm text-steel font-light">
+<li><a class="hover:text-white transition-colors" href="#">Privacy Policy</a></li>
+<li><a class="hover:text-white transition-colors" href="#">Terms of Service</a></li>
+<li><a class="hover:text-white transition-colors" href="#">Risk Disclosure</a></li>
+</ul>
+</div>
+<div>
+<h5 class="font-bold text-xs uppercase tracking-widest mb-8">Support</h5>
+<ul class="space-y-4 text-sm text-steel font-light">
+<li><a class="hover:text-white transition-colors" href="#">Help Center</a></li>
+<li><a class="hover:text-white transition-colors" href="#">Community</a></li>
+<li><a class="hover:text-white transition-colors" href="#">Status</a></li>
+</ul>
+</div>
+</div>
+<div class="max-w-7xl mx-auto mt-24 pt-12 border-t border-white/5 flex flex-col md:flex-row justify-between items-center gap-6 text-[11px] text-steel/60 font-light tracking-wide">
+<p>© 2024 NeuralX Trading Systems. All rights reserved.</p>
+<p class="uppercase">Risk Warning: Cryptocurrency trading involves significant capital risk.</p>
+</div>
+</footer>
+
+</body></html>
